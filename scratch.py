@@ -1,5 +1,6 @@
+'''download earthpy_plot_revised put in the same folder'''
 import rasterio
-import earthpy_plot_revised as ep
+import earthpy_plot_revised as ep 
 import numpy
 import matplotlib.pyplot as plt
 from matplotlib import cm
