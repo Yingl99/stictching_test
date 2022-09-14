@@ -9,7 +9,7 @@ import os
 from pandas import *
 
 
-path_of_the_directory = f"F:\\img02\\img02\\TIF1\\New_TIF1"
+path_of_the_directory = f"F:\\img16\\5\\New_TIF5"
 ext = ('.jpg', '.JPG', '.TIF')
 paths = []
 
@@ -21,7 +21,7 @@ for filename in os.scandir(path_of_the_directory):
             paths.append(f)
 
 print(paths)
-path_of_the_directory2 = f"F:\\img02\\img02\\TIF1"
+path_of_the_directory2 = f"F:\\img16\\5"
 ext = ('.jpg', '.JPG', '.TIF')
 paths2 = []
 
@@ -65,7 +65,8 @@ for images in paths2:
 print(x)
 print(y)
 
-fig = plt.figure(figsize=(20, 14), dpi=72)
+# fig = plt.figure(figsize=(20, 14), dpi=72, facecolor='grey')
+fig = plt.figure(figsize=(20, 14), dpi=100)
 ax = fig.add_subplot(111)
 ax.scatter(x, y)
 ax.scatter(x2, y2, alpha=0)
@@ -80,7 +81,8 @@ for x0, y0, path, path2 in zip(x, y, paths, paths2):
     yaw = (fyaw + gyaw) / 2
     image_arr = PIL_image.rotate(angle=-gyaw, expand=True, fillcolor=0)
     # 0.063 img06 0.046 img05 0.042 img02 0.031
-    imagebox = OffsetImage(image_arr, zoom=0.031)
+    # adjust if image overlapping is wrong
+    imagebox = OffsetImage(image_arr, zoom=0.0518)
     ab = AnnotationBbox(imagebox, (x0, y0), frameon=False)
     ax.add_artist(ab)
 
@@ -94,5 +96,6 @@ for x0, y0, path, path2 in zip(x, y, paths, paths2):
 # plt.imshow(ax, origin='lower', extent=[-56.444444444, 56.444444444, -45.861111111, 45.861111111], aspect=1)
 plt.axis('off')
 plt.axis("equal")
-plt.savefig(f'F:\\test\\5.27\\0527_TIF1.jpg', dpi=2400, format='jpg', transparent=True, bbox_inches='tight')
+fig.set_tight_layout(True)
+plt.savefig(f'F:\\test\\9.7\\0907_TIF5(100).jpg', format='jpg')
 plt.show()
