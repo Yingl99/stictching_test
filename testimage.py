@@ -134,15 +134,3 @@ fig.set_tight_layout(True)
 plt.savefig('F:\\test\\0907_RGB4.jpg', format='jpg')
 fig.canvas.draw()
 plt.show()
-
-'''check accuracy of plot point'''
-# plt.gca().invert_yaxis() 309, 831 ; 348, 902
-# x = 309, 831
-# point = ax.transData.inverted().transform(x)
-# print(point)
-# x = 120.8557222, 31.06280556
-# point = ax.transData.transform(x)
-# print(point)
-# x = 120.8570833, 31.06033333
-# point = ax.transData.transform(x)
-# print(point)
