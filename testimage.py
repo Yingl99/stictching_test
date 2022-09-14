@@ -9,7 +9,7 @@ import os
 from pandas import *
 
 # path of the images for image stitching
-path_of_the_directory = "F:\\img15\\0"
+path_of_the_directory = "F:\\img16\\0"
 ext = ('.jpg', '.JPG', '.TIF')
 paths = []
 
@@ -117,7 +117,7 @@ for x0, y0, path in zip(x, y, paths):
     #  the value of zoom can be change according to the overlapping ratios
     #  for e.g. 0.043 for 6.21 images, 0.031 for 5.27 images
     #  adjust based on the result
-    imagebox = OffsetImage(image_arr, zoom=0.049)
+    imagebox = OffsetImage(image_arr, zoom=0.0518)
     ab = AnnotationBbox(imagebox, (x0, y0), frameon=False)
     ax.add_artist(ab)
 
@@ -131,7 +131,7 @@ plt.axis("equal")
 fig.set_tight_layout(True)
 
 '''filename and location to save file'''
-plt.savefig('F:\\test\\test_RGB4.jpg', format='jpg')
+plt.savefig('F:\\test\\0907_RGB4.jpg', format='jpg')
 fig.canvas.draw()
 plt.show()
 
