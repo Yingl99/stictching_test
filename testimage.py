@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import pandas as pd
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox, TextArea
 import numpy as np
 from PIL import Image
@@ -8,7 +9,7 @@ import os
 from pandas import *
 
 # path of the images for image stitching
-path_of_the_directory = "F:\\img02\\img02\\JPG01"
+path_of_the_directory = "F:\\img15\\0"
 ext = ('.jpg', '.JPG', '.TIF')
 paths = []
 
@@ -86,7 +87,8 @@ for images in paths:
 print(x)
 print(y)
 
-fig = plt.figure(figsize=(20, 14), dpi=72)
+
+fig = plt.figure(figsize=(20, 14), dpi=100)
 ax = fig.add_subplot(111)
 ax.scatter(x, y)
 ax.scatter(x2, y2, alpha=0)
@@ -115,21 +117,32 @@ for x0, y0, path in zip(x, y, paths):
     #  the value of zoom can be change according to the overlapping ratios
     #  for e.g. 0.043 for 6.21 images, 0.031 for 5.27 images
     #  adjust based on the result
-    imagebox = OffsetImage(image_arr, zoom=0.031)
+    imagebox = OffsetImage(image_arr, zoom=0.049)
     ab = AnnotationBbox(imagebox, (x0, y0), frameon=False)
     ax.add_artist(ab)
 
-# for x, y, z in zip(x, y, paths):
-#     ax.annotate('({})'.format(z), xy=(x, y), fontsize=15)
-# for x, y in zip(x, y):
-#     ax.annotate('({}, {})'.format(x, y), xy=(x, y), fontsize=22)
-# label = "{:.5f}".format(x, y)
-# ac = AnnotationBbox(label, xy)
-# plt.annotate(label, (x,y), textcoord="offset points", xytext=(20,20), ha="center")
-# plt.imshow(ax, origin='lower', extent=[-56.444444444, 56.444444444, -45.861111111, 45.861111111], aspect=1)
+'''show USV plot point in stitched images'''
+# df = pd.read_csv('C:/LocationShip.csv')
+# im = ax.scatter(df.Lon4, df.Lat4, c=df.Chl4, cmap='plasma', s=10, zorder=3)
+# fig.colorbar(im, ax=ax)
+
 plt.axis('off')
 plt.axis("equal")
-# the filename and where you save the file
-# the dpi of the image can be changed as well according the the requirement
-plt.savefig('F:\\test\\5.27\\0527_RGB.jpg', dpi=2400, format='jpg', transparent=True, bbox_inches='tight')
+fig.set_tight_layout(True)
+
+'''filename and location to save file'''
+plt.savefig('F:\\test\\test_RGB4.jpg', format='jpg')
+fig.canvas.draw()
 plt.show()
+
+'''check accuracy of plot point'''
+# plt.gca().invert_yaxis() 309, 831 ; 348, 902
+# x = 309, 831
+# point = ax.transData.inverted().transform(x)
+# print(point)
+# x = 120.8557222, 31.06280556
+# point = ax.transData.transform(x)
+# print(point)
+# x = 120.8570833, 31.06033333
+# point = ax.transData.transform(x)
+# print(point)
